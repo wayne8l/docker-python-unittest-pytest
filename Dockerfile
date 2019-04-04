@@ -1,17 +1,20 @@
-FROM ubuntu:16.04
+ARG BASE_IMAGE=ubuntu:16.04
 
-# copy in the software
-ADD requirements.txt /srv/requirements.txt
-ADD requirements-dev.txt /srv/requirements-dev.txt
-ADD some_module /srv/some_module
+FROM ${BASE_IMAGE}
 
 # install the prerequisites
 RUN apt-get update && apt-get install -y python3 python3-pip
 
-WORKDIR /srv/
-
+# copy in the pip requirements
+ADD requirements.txt /srv/requirements.txt
+ADD requirements-dev.txt /srv/requirements-dev.txt
 # install the requirenents
-RUN pip3 install -r requirements-dev.txt
+RUN pip3 install -r /srv/requirements-dev.txt
+
+# copy in the software
+ADD some_module /srv/some_module
+
+WORKDIR /srv/
 
 # Build our entrypoint
 RUN echo "#!/usr/bin/env bash" > test.sh

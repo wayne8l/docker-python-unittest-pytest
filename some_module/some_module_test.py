@@ -4,7 +4,7 @@ import unittest
 from mock import patch, Mock, call
 from requests import Session, Response, ReadTimeout
 
-from .some_module import SomeClass, GetIPAddressError
+from some_module import SomeClass, GetIPAddressError
 
 _TEST_IP_ADDRESS_JSON = """{"ip":"66.42.111.104","ip_decimal":1110077288,"country":"United States","country_eu":false,"country_iso":"US","city":"Los Angeles","hostname":"66.42.111.104.vultr.com","latitude":34.0729,"longitude":-118.2606}"""
 
